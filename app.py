@@ -87,7 +87,9 @@ if submitted:
 
          with open('scaler_st_bigfive_gm.pkl', 'rb') as f:
              scaler = pickle.load(f)
-     
+
+
+ 
         # Standardize the user's scores
         user_scores_scaled = scaler.transform(user_scores)
         user_scores_scaled_df = pd.DataFrame(user_scores_scaled, columns=user_scores.columns)
