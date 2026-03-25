@@ -84,7 +84,6 @@ if submitted:
              kmeans_model = pickle.load(f) 
 
          #cargamos el standarizador
-
          with open('scaler_st_bigfive_gm.pkl', 'rb') as f:
              scaler = pickle.load(f)
 
