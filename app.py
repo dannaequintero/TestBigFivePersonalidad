@@ -48,11 +48,18 @@ if submitted:
         with open('scaler_st_bigfive_gm.pkl', 'rb') as f:
             scaler = pickle.load(f)
 
-        # Convertir respuestas
-        datos = np.array(respuestas).reshape(1, -1)
+    # Convertir respuestas en 5 grupos (10 preguntas cada uno)
+ext = sum(respuestas[0:10])
+neu = sum(respuestas[10:20])
+agr = sum(respuestas[20:30])
+con = sum(respuestas[30:40])
+opn = sum(respuestas[40:50])
 
-        # Escalar datos
-        datos_escalados = scaler.transform(datos)
+# Crear arreglo con 5 rasgos
+datos = np.array([[ext, neu, agr, con, opn]])
+
+# Escalar
+datos_escalados = scaler.transform(datos)
 
         # Predecir cluster
         cluster = kmeans_model.predict(datos_escalados)[0]
