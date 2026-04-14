@@ -48,25 +48,25 @@ if submitted:
         with open('scaler_st_bigfive_gm.pkl', 'rb') as f:
             scaler = pickle.load(f)
 
-    # Convertir respuestas en 5 grupos (10 preguntas cada uno)
-ext = sum(respuestas[0:10])
-neu = sum(respuestas[10:20])
-agr = sum(respuestas[20:30])
-con = sum(respuestas[30:40])
-opn = sum(respuestas[40:50])
+        # 🔥 Convertir 50 respuestas en 5 rasgos
+        ext = sum(respuestas[0:10])
+        neu = sum(respuestas[10:20])
+        agr = sum(respuestas[20:30])
+        con = sum(respuestas[30:40])
+        opn = sum(respuestas[40:50])
 
-# Crear arreglo con 5 rasgos
-datos = np.array([[ext, neu, agr, con, opn]])
+        # Crear arreglo correcto (5 features)
+        datos = np.array([[ext, neu, agr, con, opn]])
 
-# Escalar
-datos_escalados = scaler.transform(datos)
+        # Escalar datos
+        datos_escalados = scaler.transform(datos)
 
         # Predecir cluster
         cluster = kmeans_model.predict(datos_escalados)[0]
 
         st.write(f"### Perteneces al Cluster: {cluster}")
 
-        # Descripción simple de clusters
+        # Descripción de clusters
         descripciones = {
             0: "Personas introvertidas, analíticas y reservadas.",
             1: "Personas sociables, expresivas y extrovertidas.",
